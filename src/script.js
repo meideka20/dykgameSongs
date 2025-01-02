@@ -1,6 +1,6 @@
-import { pictoSongs } from './src/pictosongs.js';
-import { games } from './src/gameslist.js';
-import { slGGsongs } from './src/slggsongs.js';
+import { pictoSongs } from './pictosongs.js';
+import { games } from './gameslist.js';
+import { slGGsongs } from './slggsongs.js';
 
 let gamesList = [];
 let songs = `{"Yoga": {"track": "Yoga", "game": "Wii Fit", "url": "https://www.youtube.com/embed/RZFhVs6OGAcrel=0&enablejsapi=1"}}`
