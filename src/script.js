@@ -23,15 +23,18 @@ async function loadDataFromCSV() {
 
     //sanitizing input
     let cleanedData = (await response.text()).toString();
+    console.log(cleanedData);
     cleanedData = cleanedData.replace(/""/g, '"');
     cleanedData = cleanedData.replace(/"`/g, '');
     cleanedData = cleanedData.replace(/},}`"/g, '}}');
+    console.log(cleanedData)
     songsParse = JSON.parse(cleanedData);
     return songsParse;
 }
 //onload functionality
 async function load() {
     const songsParse = await loadDataFromCSV();
+    console.log(songsParse)
     document.querySelector('form').reset();
     score = 0;
     songsCalled = 0;
@@ -167,6 +170,7 @@ async function load() {
 }
 window.onload = () => {
     load();
+    
 };
 
 //checks radio buttons for the selected theme
