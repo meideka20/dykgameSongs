@@ -1,0 +1,383 @@
+:root {
+    --global-bg: #ffffff;
+    --global-font-family: 'Now', sans-serif;
+    --global-header-font-family: "Arco";
+    --global-text-color: #222;
+    --global-color-button: #e9e9ed;
+    --global-color-button-hover: #d0d0d7;
+    --global-color-input: #ffffff;
+    --global-link-color: rgb(203, 83, 145);
+}
+
+html[data-theme='dark'] {
+    --global-bg: #262630;
+    --global-text-color: #b6b6b6;
+    --global-link-color: rgb(166, 242, 255);
+    --global-link-hover: lightyellow;
+    --global-color-button: #545563;
+    --global-color-button-hover: #3a3b4a;
+    --global-color-input: #0e0e17;
+}
+
+html[data-theme='lovely'] {
+    --global-bg: #ffe5f8;
+    --global-text-color: #6b2b49;
+    --global-link-color: #a717a7;
+    --global-link-hover: rgb(255, 255, 255);
+    --global-color-button: #ff98d8;
+    --global-color-button-hover: #ed81be;;
+    --global-color-input: #ffffff;
+}
+html[data-theme='verdant'] {
+    --global-bg: #d5f8d2;
+    --global-text-color: #227818;
+    --global-link-color: #1b4782;
+    --global-link-hover: rgb(255, 255, 255);
+    --global-color-button: #a0e19a;
+    --global-color-button-hover: #71d76d;
+    --global-color-input: #ffffff;
+}
+html[data-theme='cocoa'] {
+    --global-bg: #7d5242;
+    --global-text-color: #341c11;
+    --global-link-color: #5a0c0c;
+    --global-link-hover: rgb(255, 255, 255);
+    --global-color-button: #b17a5d;
+    --global-color-button-hover: #d0a575;
+    --global-color-input: #f9d8cc;
+}
+html[data-theme='starry'] {
+    --global-bg: linear-gradient(180deg,#010a1a 0%, #081223 33%, #100e2c 66%, #0a375c 100%);
+    --global-text-color: #dfcd95dd;
+    --global-link-color: #f6f5de;
+    --global-link-hover: rgb(255, 255, 255);
+    --global-color-button: #ffffff32;
+    --global-color-button-hover: #ffffff67;
+    --global-color-input: #313351;
+}
+
+* {
+    font-family: var(--global-font-family);
+    color: var(--global-text-color);
+}
+
+a {
+    color: var(--global-link-color);
+}
+
+button {
+    background-color: var(--global-color-button);
+    /* box-shadow: rgba(0, 0, 0, 0.405) 0px 2px 0px; */
+}
+
+button:hover {
+    background-color: var(--global-color-button-hover);
+}
+
+h1,
+#game-reveal,
+#track-reveal,
+#rules h3,
+#controls h3 {
+    font-family: "Arco";
+    letter-spacing: 2px;
+}
+
+body {
+    text-align: center;
+    overflow: hidden;
+    /* background-color: var(--global-bg-color); */
+    background: var(--global-bg);
+    height: 100%;
+    margin: 0;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}
+
+#scores {
+    position: fixed;
+    top: 0px;
+    right: 5px;
+    text-align: right;
+}
+
+#controls {
+    position: absolute;
+    top: -240px;
+    left: 0px;
+    margin: 5px;
+    padding-right: 10px;
+    opacity: 0.5;
+    transition: ease 0.6s;
+    width: 200px;
+    min-height: 300px;
+    text-align: left;
+    border-radius: 6px;
+}
+
+#controls:hover {
+    opacity: 1.0;
+    top: 0px;
+}
+
+#controls #checks {
+    display: flex;
+    flex-flow: row wrap;
+}
+#controls form{
+    line-height: 25px;
+}
+
+#theme-label {
+    font-weight: bold;
+}
+
+#options {
+    position: relative;
+    animation: loadUp 0.6s;
+    animation-iteration-count: 1;
+    animation-fill-mode: forwards;
+}
+
+#guess-controls {
+    position: relative;
+    animation: loadUp 0.2s;
+    animation-iteration-count: 1;
+    animation-fill-mode: forwards;
+}
+
+#guess-controls label {
+    font-family: var(--global-header-font-family);
+    font-size: 25px;
+    letter-spacing: 3px;
+}
+
+#guess-controls input {
+    border-radius: 2px;
+    box-shadow: #34343468 0px 4px 5px;
+    border: 0px;
+    width: 300px;
+    margin-top: 5px;
+    font-size: 16px;
+    background-color: var(--global-color-input);
+}
+
+h3,
+h4,
+h5 {
+    font-weight: normal;
+}
+
+iframe,
+#game-reveal,
+#track-reveal,
+#next {
+    position: relative;
+    animation: loadUp 0.5s;
+    animation-iteration-count: 1;
+    animation-fill-mode: forwards;
+}
+
+#bs-detector {
+    margin: 0 auto;
+}
+
+h3#gamereveal {
+    margin-top: 0;
+    padding-top: 0;
+}
+
+#game-reveal,
+#track-reveal {
+    animation: loadDown 0.5s;
+    animation-iteration-count: 1;
+    animation-fill-mode: forwards;
+}
+
+#rules {
+    position: absolute;
+    bottom: -440px;
+    left: 0px;
+    margin: 5px;
+    padding-right: 10px;
+    width: 400px;
+    opacity: 0.5;
+    transition: ease 0.6s;
+    min-height: 300px;
+    text-align: left;
+    border-radius: 6px;
+}
+
+#rules li,
+footer li {
+    margin-bottom: 10px;
+    font-size: 15px;
+}
+
+#rules h3 {
+    margin: 6px;
+}
+
+#rules:hover,
+footer:hover {
+    opacity: 1.0;
+    bottom: 0px;
+}
+
+#rules p {
+    padding: 0px 20px;
+}
+
+footer {
+    position: absolute;
+    bottom: -220px;
+    right: 5px;
+    text-align: left;
+    width: 300px;
+    margin: 5px;
+    opacity: 0.5;
+    transition: ease 0.6s;
+    text-align: left;
+    border-radius: 6px;
+}
+
+footer h5 {
+    padding: 5px;
+    margin: 5px;
+    text-align: right;
+}
+
+#options button {
+    width: 250px;
+    height: 80px;
+    font-size: 16px;
+    margin: 3px;
+}
+
+button {
+    border: 0px;
+    border-radius: 3px;
+    padding: 5px;
+}
+
+#play-button,
+#stop-button {
+    font-size: 20px;
+    width: 70px;
+}
+
+#next {
+    font-size: 19px;
+    width: 180px;
+    margin-top: -5px;
+}
+
+#submit-guess {
+    font-size: 23px;
+    width: 135px;
+    height: 55px;
+    font-family: "Arco";
+    letter-spacing: 2px;
+    box-shadow: rgba(0, 0, 0, 0.405) 0px 4px 1px;
+}
+
+button:hover {
+    transform: scale(1.05);
+    transition: ease 0.1s;
+}
+
+/* Tooltip container */
+h4#copypaste {
+    position: relative;
+    display: inline-block;
+    margin-bottom: 20px;
+    /* If you want dots under the hoverable text */
+}
+
+/* Tooltip text */
+h4#copypaste .tooltiptext {
+    visibility: hidden;
+    width: 140px;
+    background-color: black;
+    color: #fff;
+    text-align: center;
+    padding: 5px 0;
+    border-radius: 6px;
+    font-size: 12px;
+    width: 120px;
+    bottom: 100%;
+    left: 50%;
+    margin-left: -60px;
+    transition: opacity 1s;
+
+    /* Position the tooltip text - see examples below! */
+    position: absolute;
+    z-index: 1;
+}
+
+h4#copypaste .tooltiptext::after {
+    content: " ";
+    position: absolute;
+    top: 100%;
+    /* At the bottom of the tooltip */
+    left: 50%;
+    margin-left: -5px;
+    border-width: 5px;
+    border-style: solid;
+    border-color: black transparent transparent transparent;
+}
+
+/* Show the tooltip text when you mouse over the tooltip container */
+h4#copypaste:hover .tooltiptext {
+    visibility: visible;
+    animation: loadUpTooltip 0.2s;
+    animation-iteration-count: 1;
+    animation-fill-mode: forwards;
+}
+
+@keyframes loadUp {
+    from {
+        opacity: 0;
+        bottom: -200px;
+    }
+
+    to {
+        opacity: 1;
+        bottom: 0px;
+    }
+}
+
+@keyframes loadUpTooltip {
+    from {
+        opacity: 0;
+        bottom: -10px;
+    }
+
+    to {
+        opacity: 0.8;
+        bottom: 25px;
+    }
+}
+
+@keyframes loadDown {
+    from {
+        opacity: 0;
+        top: -100px;
+    }
+
+    to {
+        opacity: 1;
+        top: 0px;
+    }
+}
+
+@font-face {
+    font-family: 'Now';
+    /*a name to be used later*/
+    src: url("fonts/Now-Regular.otf");
+}
+
+@font-face {
+    font-family: "Arco";
+    src: url("fonts/ARCO.ttf")
+}
