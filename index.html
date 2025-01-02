@@ -22,7 +22,12 @@
     <!-- <button id="play-button">Play</button> -->
     <button class="btn" id="play-button"><i class="fa fa-solid fa-play"></i></button>
     <button class="btn" id="stop-button"><i class="fa fa-solid fa-stop"></i></button>
-    <br><br>
+    <br>
+    <div id="volume-controls">
+        <i class="fa fa-volume-down"></i>
+        <input type="range" id="volume-slider" class="accent">
+        <i class="fa fa-volume-up"></i>
+    </div>
     <script type="module" src="src/script.js" crossorigin="anonymous"></script>
     <section id="options" style="display: none">
         <button class="btn" id="skip">No Idea<br>(0 pts)</button>
@@ -48,7 +53,7 @@
         <h4 id="track-reveal">Song Name:</h4>
         <iframe disablePictureInPicture width="560" height="315" pointer-events:none
             src="https://www.youtube.com/embed/pUb04A02H9A?si=Ls6MHLK0e5o80p1frel=0&enablejsapi=1" frameborder="0"
-            allow="autoplay; encrypted-media" allowfullscreen></iframe>
+            allow="autoplay; encrypted-media" allowfullscreen volume="50"></iframe>
         </iframe>
         <br>
         <button id="bs-detector" style="display: none;">I got the title close enough, please give me 3 points</button>
@@ -64,33 +69,34 @@
     </div>
     <section id="controls">
         <div id="checks">
-        <label for="sound-on"> <input id="sound-on" type="checkbox" checked="true">Play Sound Effects
-        </label>
-        <label for="confetti-on"> <input id="confetti-on" type="checkbox" checked="true">Show Confetti
-        </label>
-    </div>
-    <br>
+            <label for="sound-on"> <input id="sound-on" class="accent" type="checkbox" checked="true">Play Sound Effects
+            </label>
+            <label for="confetti-on"> <input id="confetti-on" class="accent" type="checkbox" checked="true">Show Confetti
+            </label>
+        </div>
+        <br>
         <label id="theme-label">Theme</label>
         <form>
-            <input type="radio" id="light-theme" name="theme-toggle" value="light" checked="checked">
+            <input type="radio" id="light-theme" class="accent" name="theme-toggle" value="light" checked="checked">
             <label for="light-theme">Light</label><br>
-            <input type="radio" id="dark-theme" name="theme-toggle" value="dark">
+            <input type="radio" id="dark-theme" class="accent" name="theme-toggle" value="dark">
             <label for="dark-theme">Dark</label><br>
-            <input type="radio" id="lovely-theme" name="theme-toggle" value="lovely">
+            <input type="radio" id="lovely-theme" class="accent" name="theme-toggle" value="lovely">
             <label for="lovely-theme">Lovely</label><br>
-            <input type="radio" id="verdant-theme" name="theme-toggle" value="verdant">
+            <input type="radio" id="verdant-theme" class="accent" name="theme-toggle" value="verdant">
             <label for="verdant-theme">Verdant</label><br>
-            <input type="radio" id="cocoa-theme" name="theme-toggle" value="cocoa">
+            <input type="radio" id="cocoa-theme" class="accent" name="theme-toggle" value="cocoa">
             <label for="cocoa-theme">Cocoa</label><br>
-            <input type="radio" id="starry-theme" name="theme-toggle" value="starry">
+            <input type="radio" id="starry-theme" class="accent" name="theme-toggle" value="starry">
             <label for="starry-theme">Starry</label><br>
-          </form>
-          <h3>Options</h3>
+        </form>
+        <h3>Options</h3>
     </section>
     <section id="rules">
         <h3>Rules</h3>
         <ul>
-            <li>This game is best enjoyed with an <a href = "https://ublockorigin.com/" target="_blank">assistant.</a></li>
+            <li>This game is best enjoyed with an <a href="https://ublockorigin.com/" target="_blank">assistant.</a>
+            </li>
             <li>Press play to begin hearing a random track from a video game. Once the track is playing, you have the
                 option to <b>pause</b> the song or <b>stop</b> and restart it.</li>
             <li>Choose the best option based on your familiarity with the song. You can change this at any time before
@@ -99,17 +105,18 @@
                 it's not a correct guess.</li>
             <li><b>The title of the game is case sensitive; The title of the track is not.</b></li>
             <li>The timer only counts up while the song is playing.</li>
-            <li><i>A note about the "close enough" button: Please use this sparingly and with great honor. Apply your best judgment as to whether or not you actually knew a song.</i></li>
+            <li><i>A note about the "close enough" button: Please use this sparingly and with great honor. Apply your
+                    best judgment as to whether or not you actually knew a song.</i></li>
         </ul>
     </section>
     <footer>
-        <h5><a href ="https://pictoparade.com" target="_blank">pictoparade</a></h5>
+        <h5><a href="https://pictoparade.com" target="_blank">pictoparade</a></h5>
         <ul>
             <li>Correct Game SFX: Tomodachi Life Easygoing Personality</li>
             <li>Correct Track SFX: Banjo Kazooie Collect Note</li>
             <li><a href="https://www.npmjs.com/package/canvas-confetti" target="_blank">Confetti Source</a></li>
-            <li>Special thanks to Modo, teddyccino, and SBK</li>
-            <li><a href = "https://youtu.be/msMkeJTEGuU" target="_blank">Message to the User</a></li>
+            <li>Special thanks to Modo, cajun, teddyccino, and SBK</li>
+            <li><a href="https://youtu.be/msMkeJTEGuU" target="_blank">Message to the User</a></li>
         </ul>
     </footer>
 </body>

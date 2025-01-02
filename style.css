@@ -100,6 +100,10 @@ body {
     right: 5px;
     text-align: right;
 }
+#scores h3{
+    font-family: "Arco";
+    letter-spacing: 2px;
+}
 
 #controls {
     position: absolute;
@@ -192,6 +196,19 @@ h3#gamereveal {
     animation: loadDown 0.5s;
     animation-iteration-count: 1;
     animation-fill-mode: forwards;
+}
+
+#volume-controls{
+    height: 40px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 4px;
+    font-size: 25px;
+}
+.accent {
+    accent-color: var(--global-text-color);
 }
 
 #rules {

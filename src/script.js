@@ -19,7 +19,7 @@ let achievement;
 async function loadDataFromCSV() {
     const response = await fetch("https://docs.google.com/spreadsheets/d/e/2PACX-1vTEGevegI0bo7OLkuGHKVeWEJl2LvwVzxc4_1ESHC_6oWgOB-dv2koP4Fb2Fj1sFDA9otuW0x_GPr54/pub?gid=447240131&single=true&gid=0&range=H2:H2&output=csv", {}) // type: Promise<Response>
     if (!response.ok) {
-      throw Error(response.statusText)
+        throw Error(response.statusText)
     }
     let cleanedData = (await response.text()).toString();
     cleanedData = cleanedData.replace(/""/g, '"'); // Remove all double quotes
@@ -27,7 +27,7 @@ async function loadDataFromCSV() {
     cleanedData = cleanedData.replace(/},}`"/g, '}}'); // Remove all double quotes
     songsParse = JSON.parse(cleanedData);
     return songsParse;
-  }
+}
 async function load() {
     const songsParse = await loadDataFromCSV();
     document.querySelector('form').reset();
@@ -142,6 +142,10 @@ async function load() {
         toggleHidden();
         repopulate();
     })
+    let volume = document.getElementById('volume-slider');
+    volume.addEventListener("change", function (e) {
+        videoVolume(e.currentTarget.value)
+    })
 
     achievement = document.querySelector("#copypaste");
     getTheme();
@@ -180,6 +184,13 @@ const controlVideo = (vidFunc) => {
         "*"
     );
 }
+const videoVolume = (vol) => {
+    let iframe = document.getElementsByTagName("iframe")[0].contentWindow;
+    iframe.postMessage(
+        `{"event":"command","func": "setVolume","args": [${vol}]}`,
+        "*"
+    );
+}
 const repopulate = () => {
     resetTimer();
     document.querySelector("#bs-detector").style["display"] = "none"
@@ -194,9 +205,9 @@ const repopulate = () => {
     list = Object.keys(songsParse);
     let name = list[Math.ceil(Math.random() * list.length) - 1];
     song = songsParse[name];
-    // if (song == undefined) {
-    //     alert("The game is over!");
-    // }
+    if (song == undefined) {
+        alert("The game is over!");
+    }
     let grab = document.querySelector("iframe");
     grab.src = song.url;
     document.querySelector("#game-reveal").innerHTML = `From: ${song.game}`;
@@ -215,7 +226,6 @@ const toggleHidden = () => {
     else {
         document.querySelector("#hidden").style["display"] = "none"
     }
-
 }
 
 const submitGuess = () => {
