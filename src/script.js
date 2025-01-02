@@ -23,18 +23,15 @@ async function loadDataFromCSV() {
 
     //sanitizing input
     let cleanedData = (await response.text()).toString();
-    console.log(cleanedData);
     cleanedData = cleanedData.replace(/""/g, '"');
     cleanedData = cleanedData.replace(/"`/g, '');
     cleanedData = cleanedData.replace(/},}`"/g, '}}');
-    console.log(cleanedData)
     songsParse = JSON.parse(cleanedData);
     return songsParse;
 }
 //onload functionality
 async function load() {
     const songsParse = await loadDataFromCSV();
-    console.log(songsParse)
     document.querySelector('form').reset();
     score = 0;
     songsCalled = 0;
@@ -372,10 +369,17 @@ const findCommonCharacters = (str1, str2) =>{
             result.push(char);
         }
     }
-    if (str2.length < 5) {
-        return (result.length > (str2.length * 0.9));
+    let compareStr;
+    if (str1.length > str2.length){
+        compareStr = str1.length;
     }
-    return (result.length > (str2.length * 0.65));
+    else{
+        compareStr = str2.length;
+    }
+    if (str2.length < 5) {
+        return (result.length > (compareStr * 0.9));
+    }
+    return (result.length > (compareStr * 0.75));
 }
 
 //function for when a player gets track and game
