@@ -1,16 +1,14 @@
 import { pictoSongs } from './pictosongs.js';
 import { games } from './gameslist.js';
-import { slGGsongs } from './slggsongs.js';
 
 let gamesList = [];
-let songs = slGGsongs
+let songs = pictoSongs;
 
 // let sammiSubmitUrl = 'https://forms.gle/gsQeNaso6pXGTLkQ7';
 
-const songsParse = JSON.parse(songs);
-
-// let postURL = `https://id.twitch.tv/oauth2/token?client_id=${id}&client_secret=${secret}&grant_type=client_credentials`
 let song;
+
+let songsParse = {};
 let score;
 let gameScore;
 let songsCalled;
@@ -18,7 +16,20 @@ let list;
 let timerId;
 let seconds = 0;
 let achievement;
-window.onload = () => {
+async function loadDataFromCSV() {
+    const response = await fetch("https://docs.google.com/spreadsheets/d/e/2PACX-1vTEGevegI0bo7OLkuGHKVeWEJl2LvwVzxc4_1ESHC_6oWgOB-dv2koP4Fb2Fj1sFDA9otuW0x_GPr54/pub?gid=447240131&single=true&gid=0&range=H2:H2&output=csv", {}) // type: Promise<Response>
+    if (!response.ok) {
+      throw Error(response.statusText)
+    }
+    let cleanedData = (await response.text()).toString();
+    cleanedData = cleanedData.replace(/""/g, '"'); // Remove all double quotes
+    cleanedData = cleanedData.replace(/"`/g, ''); // Remove all double quotes
+    cleanedData = cleanedData.replace(/},}`"/g, '}}'); // Remove all double quotes
+    songsParse = JSON.parse(cleanedData);
+    return songsParse;
+  }
+async function load() {
+    const songsParse = await loadDataFromCSV();
     document.querySelector('form').reset();
     score = 0;
     songsCalled = 0;
@@ -138,6 +149,9 @@ window.onload = () => {
     document.querySelectorAll("button").forEach(div => {
         div.style.cursor = 'pointer';
     });
+}
+window.onload = () => {
+    load();
 };
 
 const getTheme = () => {
@@ -180,9 +194,9 @@ const repopulate = () => {
     list = Object.keys(songsParse);
     let name = list[Math.ceil(Math.random() * list.length) - 1];
     song = songsParse[name];
-    if (song == undefined) {
-        alert("The game is over!");
-    }
+    // if (song == undefined) {
+    //     alert("The game is over!");
+    // }
     let grab = document.querySelector("iframe");
     grab.src = song.url;
     document.querySelector("#game-reveal").innerHTML = `From: ${song.game}`;
@@ -300,10 +314,10 @@ function findCommonCharacters(str1, str2) {
             result.push(char);
         }
     }
-    if (str1.length < 5) {
-        return (result.length > (str1.length * 0.9));
+    if (str2.length < 5) {
+        return (result.length > (str2.length * 0.9));
     }
-    return (result.length > (str1.length * 0.65));
+    return (result.length > (str2.length * 0.65));
 }
 
 const extraCorrect = () => {
