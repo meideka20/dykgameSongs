@@ -3,7 +3,7 @@ import { games } from './gameslist.js';
 import { slGGsongs } from './slggsongs.js';
 
 let gamesList = [];
-let songs = `{"Yoga": {"track": "Yoga", "game": "Wii Fit", "url": "https://www.youtube.com/embed/RZFhVs6OGAcrel=0&enablejsapi=1"}}`
+let songs = slGGsongs
 
 // let sammiSubmitUrl = 'https://forms.gle/gsQeNaso6pXGTLkQ7';
 
