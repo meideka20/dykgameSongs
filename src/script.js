@@ -9,10 +9,6 @@ let songs = slGGsongs
 
 const songsParse = JSON.parse(songs);
 
-// const id = "z7k7pzyddfxmgm1xqdwaau7nzvvdcc";
-// const secret = "7pv4r3cftsevz6ybqc17jh6b1s8y16";
-// let accessToken;
-
 // let postURL = `https://id.twitch.tv/oauth2/token?client_id=${id}&client_secret=${secret}&grant_type=client_credentials`
 let song;
 let score;
@@ -139,47 +135,6 @@ window.onload = () => {
     achievement = document.querySelector("#copypaste");
     getTheme();
     repopulate();
-    //IGDB CODE (CORS REQUEST 401)
-    //need to set up proxy to get direct access to api
-    // fetch(
-    //     "https://id.twitch.tv/oauth2/token?client_id=z7k7pzyddfxmgm1xqdwaau7nzvvdcc&client_secret=7pv4r3cftsevz6ybqc17jh6b1s8y16&grant_type=client_credentials",
-    //     {
-    //         method: "POST",
-    //         headers: {
-    //             "Content-type": "application/json; charset=UTF-8"
-    //         },
-    //         body: JSON.stringify({
-    //             client_id: 'z7k7pzyddfxmgm1xqdwaau7nzvvdcc',
-    //             client_secret: '7pv4r3cftsevz6ybqc17jh6b1s8y16',
-    //             grant_type: 'client_credentials'
-    //         })
-    //     })
-    //         .then(response => response.json())
-    //         .then(data => {
-    //             accessToken = data.access_token;
-    //         })
-    //         .catch(error => {
-    //             console.error('Error fetching data:', error);
-    //         })
-
-    // fetch(
-    //     "https://api.igdb.com/v4/games",
-    //     {
-    //         method: 'POST',
-    //         headers: {
-    //             'Accept': 'application/json',
-    //             'Client-ID': 'z7k7pzyddfxmgm1xqdwaau7nzvvdcc',
-    //             'Authorization': 'Bearer ' + accessToken,
-    //             'Access-Control-Allow-Origin': '*'
-    //         },
-    //         body: "name"
-    //     })
-    //     .then(response => {
-    //         console.log(response.json());
-    //     })
-    //     .catch(err => {
-    //         console.error(err);
-    //     });
     document.querySelectorAll("button").forEach(div => {
         div.style.cursor = 'pointer';
     });
@@ -345,10 +300,10 @@ function findCommonCharacters(str1, str2) {
             result.push(char);
         }
     }
-    if (str2.length < 5) {
-        return (result.length > (str2.length * 0.9));
+    if (str1.length < 5) {
+        return (result.length > (str1.length * 0.9));
     }
-    return (result.length > (str2.length * 0.65));
+    return (result.length > (str1.length * 0.65));
 }
 
 const extraCorrect = () => {
