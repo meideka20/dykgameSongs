@@ -339,6 +339,7 @@ const submitGuess = () => {
 
 //plays sfx
 const playAudio = (audio) =>{
+    audio.volume = (volume.value/100);
     audio.play();
 }
 
