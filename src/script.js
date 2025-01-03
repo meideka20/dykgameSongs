@@ -12,6 +12,7 @@ let list;
 let timerId;
 let seconds = 0;
 let achievement;
+let volume;
 
 //async function to get the submission data
 async function loadDataFromCSV() {
@@ -76,10 +77,7 @@ async function load() {
     }
     );
     //get volume slider
-    let volume = document.getElementById('volume-slider');
-    volume.addEventListener("change", function (e) {
-        videoVolume(e.currentTarget.value)
-    })
+    volume = document.getElementById('volume-slider');
 
     playButton.addEventListener("click", () => {
         if (playButton.innerHTML == `<i class="fa fa-solid fa-play"></i>`) {
@@ -212,7 +210,6 @@ const videoVolume = (vol) => {
 //repopulation for a new track
 const repopulate = () => {
     resetTimer();
-
     document.querySelector("#bs-detector").style["display"] = "none"
     document.querySelector("#options").style["display"] = "none";
     document.querySelector("#guess-controls").style["display"] = "none";
@@ -238,6 +235,9 @@ const repopulate = () => {
     grab.src = song.url;
     document.querySelector("#game-reveal").innerHTML = `From: ${song.game}`;
     document.querySelector("#track-reveal").innerHTML = `Track Name: ${song.track}`;
+    volume.addEventListener("change", function (e) {
+        videoVolume(e.currentTarget.value)
+    })
     //remove it from the list so no repeats
     delete songsParse[name];
 }
@@ -320,7 +320,7 @@ const submitGuess = () => {
                 let copied = achievement.textContent;
                 //change it to say I and add a link to the website
                 copied = copied.replace("You", "I");
-                copied = copied.replace("Click to copy!", " website link")
+                copied = copied.replace("Click to copy!", " https://peachgels.github.io/dykgameSongs/")
                 event.clipboardData.setData("text/plain", copied);
             }
         });
