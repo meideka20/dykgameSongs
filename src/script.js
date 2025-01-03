@@ -289,7 +289,9 @@ const submitGuess = () => {
                 let bsButton = document.querySelector("#bs-detector");
                 bsButton.style["display"] = "block";
                 bsButton.addEventListener('click', () => {
+                    achievement.innerHTML = "";
                     extraCorrect();
+                    createTooltip();
                     bsButton.style["display"] = "none";
                 })
             }
@@ -311,20 +313,7 @@ const submitGuess = () => {
 
         }
         //create click to copy tooltip
-        let tooltip = document.createElement("span");
-        tooltip.className = "tooltiptext";
-        tooltip.innerHTML = "Click to copy!"
-        document.querySelector("#copypaste").appendChild(tooltip);
-        achievement.addEventListener("copy", function (event) {
-            event.preventDefault();
-            if (event.clipboardData) {
-                let copied = achievement.textContent;
-                //change it to say I and add a link to the website
-                copied = copied.replace("You", "I");
-                copied = copied.replace("Click to copy!", " https://pictoparade.github.io/guessTheGameSong/")
-                event.clipboardData.setData("text/plain", copied);
-            }
-        });
+        createTooltip();
         score++;
         gameScore++;
         setScoreOnPage();
@@ -413,5 +402,22 @@ const extraCorrect = () => {
 const setScoreOnPage = () => {
     document.querySelector("#score").innerHTML = `Score: ${score}`
     document.querySelector("#correct-counter").innerHTML = `Games Known: ${gameScore}/${songsCalled}`;
+}
+
+const createTooltip = () => {
+    let tooltip = document.createElement("span");
+        tooltip.className = "tooltiptext";
+        tooltip.innerHTML = "Click to copy!"
+        document.querySelector("#copypaste").appendChild(tooltip);
+        achievement.addEventListener("copy", function (event) {
+            event.preventDefault();
+            if (event.clipboardData) {
+                let copied = achievement.textContent;
+                //change it to say I and add a link to the website
+                copied = copied.replace("You", "I");
+                copied = copied.replace("Click to copy!", " https://pictoparade.github.io/guessTheGameSong/")
+                event.clipboardData.setData("text/plain", copied);
+            }
+        });
 }
 
