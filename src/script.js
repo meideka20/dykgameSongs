@@ -76,10 +76,16 @@ async function load() {
     );
     //get volume slider
     volume = document.getElementById('volume-slider');
+    volume.addEventListener("change", function (e) {
+        videoVolume(e.currentTarget.value)
+        document.querySelector("#extracorrect").volume = (e.currentTarget.value/100);
+        document.querySelector("#correct").volume = (e.currentTarget.value/100);
+    })
 
     playButton.addEventListener("click", () => {
         if (playButton.innerHTML == `<i class="fa fa-solid fa-play"></i>`) {
             controlVideo("playVideo")
+            videoVolume(volume.value);
             startTimer();
             playButton.innerHTML = `<i class="fa fa-solid fa-pause"></i>`
             if (document.querySelector("#hidden").style["display"] == "none") {
@@ -198,7 +204,6 @@ const controlVideo = (vidFunc) => {
     );
 }
 const videoVolume = (vol) => {
-    console.log(`called, vol set to ${vol}`);
     let iframe = document.getElementsByTagName("iframe")[0].contentWindow;
     iframe.postMessage(
         `{"event":"command","func": "setVolume","args": [${vol}]}`,
@@ -234,9 +239,6 @@ const repopulate = () => {
     grab.src = song.url;
     document.querySelector("#game-reveal").innerHTML = `From: ${song.game}`;
     document.querySelector("#track-reveal").innerHTML = `Track Name: ${song.track}`;
-    volume.addEventListener("change", function (e) {
-        videoVolume(e.currentTarget.value)
-    })
     //remove it from the list so no repeats
     delete songsParse[name];
 }
