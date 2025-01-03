@@ -200,6 +200,7 @@ const controlVideo = (vidFunc) => {
     );
 }
 const videoVolume = (vol) => {
+    console.log(`called, vol set to ${vol}`);
     let iframe = document.getElementsByTagName("iframe")[0].contentWindow;
     iframe.postMessage(
         `{"event":"command","func": "setVolume","args": [${vol}]}`,
