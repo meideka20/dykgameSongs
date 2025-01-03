@@ -321,7 +321,7 @@ const submitGuess = () => {
                 let copied = achievement.textContent;
                 //change it to say I and add a link to the website
                 copied = copied.replace("You", "I");
-                copied = copied.replace("Click to copy!", " https://peachgels.github.io/dykgameSongs/")
+                copied = copied.replace("Click to copy!", " https://pictoparade.github.io/guessTheGameSong/")
                 event.clipboardData.setData("text/plain", copied);
             }
         });
