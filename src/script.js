@@ -29,8 +29,7 @@ async function loadDataFromCSV() {
     cleanedData = cleanedData.replace(/"`/g, '');
     cleanedData = cleanedData.replace(/END"/g, '');
     cleanedData = cleanedData.replace(/"},"/g, '"}}');
-    cleanedData = cleanedData.replace(/'/g, '"').replace(/(\w+):/g, '"$1":');
-    console.log(cleanedData);
+    // cleanedData = cleanedData.replace(/'/g, '"').replace(/(\w+):/g, '"$1":');
     songsParse = JSON.parse(cleanedData);
     return songsParse;
 }
