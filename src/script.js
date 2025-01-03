@@ -16,16 +16,19 @@ let achievement;
 //async function to get the submission data
 async function loadDataFromCSV() {
     //fetch the cell in the google sheet
-    const response = await fetch("https://docs.google.com/spreadsheets/d/e/2PACX-1vTEGevegI0bo7OLkuGHKVeWEJl2LvwVzxc4_1ESHC_6oWgOB-dv2koP4Fb2Fj1sFDA9otuW0x_GPr54/pub?gid=447240131&single=true&gid=0&range=H2:H2&output=csv", {}) // type: Promise<Response>
+    const response = await fetch("https://docs.google.com/spreadsheets/d/e/2PACX-1vTEGevegI0bo7OLkuGHKVeWEJl2LvwVzxc4_1ESHC_6oWgOB-dv2koP4Fb2Fj1sFDA9otuW0x_GPr54/pub?gid=447240131&single=true&gid=0&range=H2:H3&output=csv", {}) // type: Promise<Response>
     if (!response.ok) {
         throw Error(response.statusText)
     }
 
     //sanitizing input
     let cleanedData = (await response.text()).toString();
+    cleanedData = cleanedData.replace(/"""/g, '"');
     cleanedData = cleanedData.replace(/""/g, '"');
     cleanedData = cleanedData.replace(/"`/g, '');
-    cleanedData = cleanedData.replace(/},}`"/g, '}}');
+    cleanedData = cleanedData.replace(/END"/g, '');
+    cleanedData = cleanedData.replace(/"},"/g, '"}}');
+    console.log(cleanedData)
     songsParse = JSON.parse(cleanedData);
     return songsParse;
 }
